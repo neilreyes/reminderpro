@@ -4,12 +4,32 @@
   align-text: center;
 }
 
-.form-inline{
-  padding: 15px 0;
+@media screen and (min-width: 992px){
+  .App{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1170px){
+  .App{
+    width: 35%;
+  }
+}
+
+.form{
+  background: #e8e8e8;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.form-control{
+  margin-bottom: 8px;
 }
 
 .list-group{
-  padding-bottom: 15px;
+  margin: 0;
+  padding: 0 0 15px 0 ;
 }
 
 .list-group-item{

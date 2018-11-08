@@ -94,7 +94,7 @@ class App extends Component {
       <div className="App container">
         <h1>ReminderPro</h1>
 
-        <div className="form-inline">
+        <div className="form">
           <div className="form-group">
             <input
               className="form-control"
@@ -108,15 +108,16 @@ class App extends Component {
               className="form-control"
               onChange={this.handleDateChange}
             />
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={this.addReminder}
+            >
+              Add Reminder
+            </button>
           </div>
 
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={this.addReminder}
-          >
-            Add Reminder
-          </button>
+          
         </div>
         { this.renderReminders() }
         { this.renderClearReminder() }
