@@ -36,6 +36,7 @@ class App extends Component {
   } */
 
   handleInputChange(event){
+    console.log(event.target);
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -111,19 +112,22 @@ class App extends Component {
         >
           <div className="form-group">
             <input
+              value={this.state.text}
               className="form-control"
               placeholder="I have to..."
               type="text"
+              name="text"
               onChange={this.handleInputChange}
             />
 
             <input
-              type="datetime-local"
+              value={this.state.date}
               className="form-control"
+              type="datetime-local"
+              name="date"
               onChange={this.handleInputChange}
             />
             <button
-              type="button"
               className="btn btn-success"
             >
               Add Reminder
