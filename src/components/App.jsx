@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../App.css';
 import { connect } from 'react-redux';
 import { addReminder } from '../actions';
 
@@ -8,14 +7,13 @@ class App extends Component {
     super(props);
     this.handleTextChange = this.handleTextChange.bind(this);
     this.addReminder = this.addReminder.bind(this);
+    //this.renderReminders = this.renderReminders.bind(this);
     this.state = {
       text: '',
     };
   }
 
   handleTextChange(event){
-    console.log('handleTextChange :', event.target.value);
-
     this.setState({
       text: event.target.value,
     });
@@ -24,6 +22,24 @@ class App extends Component {
   addReminder(event){
     console.log('(addReminder) this state: ', this);
     this.props.addReminder(this.state.text);
+  }
+
+  renderReminders(){
+    const { reminders } = this.props;
+
+    return (
+      <ul className="list-group col-12">
+        {
+          reminders.map((reminder, index)=>{
+            return (
+              <li key={reminder.id} className="list-group-item">
+                {reminder.text}
+              </li>
+            );
+          })
+        }
+      </ul>
+    );
   }
 
   render() {
@@ -48,9 +64,16 @@ class App extends Component {
             Add Reminder
           </button>
         </div>
+        { this.renderReminders() }
       </div>
     );
   }
 }
 
-export default connect(null, {addReminder} )(App);
+function mapStateToProps(state){
+  return {
+    reminders: state,
+  }
+}
+
+export default connect(mapStateToProps, {addReminder} )(App);
