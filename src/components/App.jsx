@@ -6,9 +6,7 @@ import moment from 'moment';
 class App extends Component {
   constructor(props){
     super(props);
-    
-    /* this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this); */
+
     this.handleInputChange = this.handleInputChange.bind(this);
     this.addReminder = this.addReminder.bind(this);
     this.deleteReminder = this.deleteReminder.bind(this);
@@ -22,21 +20,7 @@ class App extends Component {
     };
   }
 
-  /* handleTextChange(event){
-    this.setState({
-      text: event.target.value,
-    });
-  }
-
-  handleDateChange(event){
-    console.log(event.target.value);
-    this.setState({
-      date: event.target.value,
-    });
-  } */
-
   handleInputChange(event){
-    console.log(event.target);
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -49,6 +33,10 @@ class App extends Component {
   addReminder(event){
     event.preventDefault();
     this.props.addReminder(this.state.text, this.state.date);
+    this.setState({
+      text: '',
+      date: '',
+    });
   }
 
   deleteReminder(id){
