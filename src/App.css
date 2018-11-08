@@ -7,3 +7,25 @@
 .form-inline{
   padding: 15px 0;
 }
+
+.list-group-item{
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-button{
+  cursor: pointer;
+  float: right;
+  padding-left: 5px;
+  transition: all 0.3s ease-in-out;
+  padding: 10px;
+  border-radius: 100%;
+  border: 1px solid transparent;
+  text-align: center;
+  width: 46px;
+}
+
+.delete-button:hover{
+  border: 1px solid #c0c0c0;
+}
