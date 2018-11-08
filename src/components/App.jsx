@@ -5,12 +5,16 @@ import { addReminder, deleteReminder } from '../actions';
 class App extends Component {
   constructor(props){
     super(props);
+    
     this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.addReminder = this.addReminder.bind(this);
     this.deleteReminder = this.deleteReminder.bind(this);
     this.renderReminders = this.renderReminders.bind(this);
+
     this.state = {
       text: '',
+      date: '',
     };
   }
 
@@ -20,14 +24,18 @@ class App extends Component {
     });
   }
 
+  handleDateChange(event){
+    console.log(event.target.value);
+    this.setState({
+      date: event.target.value,
+    });
+  }
+
   addReminder(event){
-    this.props.addReminder(this.state.text);
+    this.props.addReminder(this.state.text, this.state.date);
   }
 
   deleteReminder(id){
-    console.log('deleting in application', id);
-    console.log('this.props', this.props);
-
     this.props.deleteReminder(id);
   }
 
@@ -40,7 +48,10 @@ class App extends Component {
           reminders.map((reminder, index)=>{
             return (
               <li key={reminder.id} className="list-group-item">
-                <div className="list-item">{reminder.text}</div>
+                <div className="list-item">
+                  <h3>{reminder.text}</h3>
+                  <em>{reminder.dueDate}</em>
+                </div>
                 <div
                   className="list-item delete-button"
                   onClick={()=>{this.deleteReminder(reminder.id)}}
@@ -68,7 +79,14 @@ class App extends Component {
               type="text"
               onChange={this.handleTextChange}
             />
+
+            <input
+              type="datetime-local"
+              className="form-control"
+              onChange={this.handleDateChange}
+            />
           </div>
+
           <button
             type="button"
             className="btn btn-success"
