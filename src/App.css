@@ -8,6 +8,10 @@
   padding: 15px 0;
 }
 
+.list-group{
+  padding-bottom: 15px;
+}
+
 .list-group-item{
   align-items: center;
   display: flex;
