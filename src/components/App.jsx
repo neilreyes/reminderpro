@@ -7,8 +7,9 @@ class App extends Component {
   constructor(props){
     super(props);
     
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
+    /* this.handleTextChange = this.handleTextChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this); */
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.addReminder = this.addReminder.bind(this);
     this.deleteReminder = this.deleteReminder.bind(this);
     this.clearReminders = this.clearReminders.bind(this);
@@ -21,7 +22,7 @@ class App extends Component {
     };
   }
 
-  handleTextChange(event){
+  /* handleTextChange(event){
     this.setState({
       text: event.target.value,
     });
@@ -32,9 +33,20 @@ class App extends Component {
     this.setState({
       date: event.target.value,
     });
+  } */
+
+  handleInputChange(event){
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
   addReminder(event){
+    event.preventDefault();
     this.props.addReminder(this.state.text, this.state.date);
   }
 
@@ -94,31 +106,30 @@ class App extends Component {
       <div className="App container">
         <h1>ReminderPro</h1>
 
-        <div className="form">
+        <form
+          onSubmit={this.addReminder}
+        >
           <div className="form-group">
             <input
               className="form-control"
               placeholder="I have to..."
               type="text"
-              onChange={this.handleTextChange}
+              onChange={this.handleInputChange}
             />
 
             <input
               type="datetime-local"
               className="form-control"
-              onChange={this.handleDateChange}
+              onChange={this.handleInputChange}
             />
             <button
               type="button"
               className="btn btn-success"
-              onClick={this.addReminder}
             >
               Add Reminder
             </button>
           </div>
-
-          
-        </div>
+        </form>
         { this.renderReminders() }
         { this.renderClearReminder() }
       </div>
